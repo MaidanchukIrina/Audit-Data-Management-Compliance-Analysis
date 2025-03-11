@@ -1,0 +1,46 @@
+    -- Add company
+INSERT INTO companies (company_name, address, eac_code, num_employees_ft, num_employees_pt)
+VALUES ('Company 1', 'Adress 1', '33b; 33c; 33f', 15, 26)
+RETURNING company_id;
+
+-- Add audit
+INSERT INTO audits (company_id, audit_date, audit_type, standard, num_days_onsite, num_days_remote, lead_auditor)
+VALUES (1, '2022-09-20', 'ETS', 'ISO 22301:2012', 0, 0.5, 'Lead Auditor 1')
+RETURNING audit_id;
+
+-- Add non-conformance
+INSERT INTO non_conformances (audit_id, clause_number, nc_type, description, corrective_action, status, resolution_date)
+VALUES (1, '4.1', 'Minor', 'Lack of risk assessment documentation', 'Implement risk review process', 'Open', NULL);
+
+-- Add improvements 
+INSERT INTO improvements (audit_id, area, description, action_plan)
+VALUES (1, 'Training', 'More frequent ISO compliance training needed', 'Schedule quarterly training sessions');
+
+-- Add risks
+INSERT INTO risks (audit_id, risk_description, mitigation_plan, status)
+VALUES (1, 'Data security vulnerability', 'Implement additional encryption', 'Identified');
+
+SELECT * FROM companies;
+SELECT * FROM audits;
+SELECT * FROM non_conformances;
+SELECT * FROM improvements;
+SELECT * FROM risks;
+
+List of audits
+
+SELECT a.audit_id, c.company_name, a.audit_date, a.standard
+FROM audits a
+JOIN companies c ON a.company_id = c.company_id;
+
+📍 List non_conformances
+
+SELECT nc.clause_number, nc.nc_type, nc.description
+FROM non_conformances nc
+JOIN audits a ON nc.audit_id = a.audit_id
+
+
+📍 Identified risks
+
+SELECT risk_description, status
+FROM risks
+WHERE status = 'Identified';
