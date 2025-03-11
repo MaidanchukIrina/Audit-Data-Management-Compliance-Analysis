@@ -22,7 +22,7 @@ By analyzing audit reports, this project will provide:
 ```
 📂 audit_data_project
 │── 📂 data
-│   ├── raw/            # Original audit reports (anonymized)
+│   ├── raw/            # Original audit report sample (anonymized)
 │   ├── processed/      # Extracted and cleaned data
 │── 📂 notebooks
 │   ├── data_extraction.ipynb  # Notebook for extracting data
