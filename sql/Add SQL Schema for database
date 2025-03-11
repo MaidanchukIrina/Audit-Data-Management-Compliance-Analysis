@@ -1,0 +1,55 @@
+CREATE DATABASE audit_db
+
+SELECT datname FROM pg_database;
+
+-- Table companies
+CREATE TABLE companies (
+    company_id SERIAL PRIMARY KEY,
+    company_name TEXT NOT NULL,
+    address TEXT,
+    eac_code TEXT,
+    num_employees_ft INT,
+    num_employees_pt INT
+);
+
+-- Table audits
+CREATE TABLE audits (
+    audit_id SERIAL PRIMARY KEY,
+    company_id INT REFERENCES companies(company_id),
+    audit_date DATE NOT NULL,
+    audit_type TEXT,
+    standard TEXT,
+    num_days_onsite FLOAT,
+    num_days_remote FLOAT,
+    lead_auditor TEXT
+);
+
+-- Table non_conformances
+CREATE TABLE non_conformances (
+    nc_id SERIAL PRIMARY KEY,
+    audit_id INT REFERENCES audits(audit_id),
+    clause_number TEXT,
+    nc_type TEXT CHECK (nc_type IN ('Major', 'Minor')),
+    description TEXT,
+    corrective_action TEXT,
+    status TEXT CHECK (status IN ('Open', 'Closed')),
+    resolution_date DATE
+);
+
+-- Table improvements
+CREATE TABLE improvements (
+    improvement_id SERIAL PRIMARY KEY,
+    audit_id INT REFERENCES audits(audit_id),
+    area TEXT,
+    description TEXT,
+    action_plan TEXT
+);
+
+-- Table risks
+CREATE TABLE risks (
+    risk_id SERIAL PRIMARY KEY,
+    audit_id INT REFERENCES audits(audit_id),
+    risk_description TEXT,
+    mitigation_plan TEXT,
+    status TEXT CHECK (status IN ('Identified', 'Mitigated', 'Ongoing'))
+);
