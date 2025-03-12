@@ -39,10 +39,10 @@ By analyzing audit reports, this project will provide:
 
 ## ✅ Project Roadmap
 ### **Phase 1: Data Preparation**
-- [ ] Define database schema
-- [ ] Create SQL tables
+- [+] Define database schema
+- [+] Create SQL tables
 - [ ] Write Python script for parsing audit reports
-- [ ] Extract sample data and validate structure
+- [+] Extract sample data and validate structure
 
 ### **Phase 2: Data Processing & Analysis**
 - [ ] Load structured data into SQL database
@@ -59,6 +59,16 @@ By analyzing audit reports, this project will provide:
 - [ ] Improve parsing efficiency
 - [ ] Document the entire process in the repository
 - [ ] Prepare final README and project summary
+
+### **Future Enhancements**
+- [ ] **Automate Data Pipeline**: Implement Apache Airflow or cron jobs for scheduled ETL processing.
+- [ ] **Data Quality Monitoring**: Introduce validation rules for consistency and anomaly detection.
+- [ ] **Audit Logging**: Track changes in audit data for better traceability and compliance.
+- [ ] **Role-Based Access Control (RBAC)**: Restrict database access based on user roles.
+- [ ] **Encryption & Security Measures**: Ensure compliance with ISO 27001 through data masking and encryption.
+- [ ] **Advanced Risk Analysis**: Utilize ML models to predict audit risks based on historical data.
+- [ ] **Store File Paths in Database**: Add `file_path` column in the `audits` table to track the original location of each audit report for easy retrieval and traceability.
+
 
 ## 🔧 Technologies & Analytical Skills Demonstrated
 - **Programming:** Python (pandas, spaCy, NLP, docx processing)
